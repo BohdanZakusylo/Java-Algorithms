@@ -4,19 +4,13 @@ public class Main
 {
     public static void main(String[] args)
     {
-        MyBinarySearchTree<String> mbt = new MyBinarySearchTree<>("A");
-        mbt.addValue("B");
-        mbt.addValue("C");
-        mbt.addValue("D");
-        mbt.addValue("F");
+        MyBinarySearchTree<Integer> mbt = new MyBinarySearchTree<>();
+        Integer[] values = {50, 30, 70, 20, 40, 60, 80, 10, 35, 65};
+        for(int number: values)
+        {
+            mbt.addValue(number);
+        }
 
-        mbt.printTree();
-
-        mbt.remove("A");
-        System.out.println("AAAAAAAAAA");
-        mbt.printTree();
-        System.out.println("AAAAAAAAAA");
-        mbt.replace("D", "A");
-        mbt.printTree();
+        System.out.println(mbt.toList());
     }
 }

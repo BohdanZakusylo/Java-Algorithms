@@ -1,5 +1,8 @@
 package BinarySearchTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyBinarySearchTree<E extends Comparable<E>>
 {
     public Node<E> root;
@@ -14,7 +17,7 @@ public class MyBinarySearchTree<E extends Comparable<E>>
 
     public void addValue(E element)
     {
-        this.add(this.root, element);
+        this.root = this.add(this.root, element);
     }
 
     public Node<E> getNode(E element)
@@ -35,6 +38,24 @@ public class MyBinarySearchTree<E extends Comparable<E>>
     public void remove(E element)
     {
         this.root = this.remove(this.root, element);
+    }
+
+    public List<E> toList()
+    {
+        List<E> lst = new ArrayList<>();
+        this.toList(this.root, lst);
+
+        return lst;
+    }
+
+    private void toList(Node<E> node, List<E> lst)
+    {
+        if(node == null){
+            return;
+        }
+        toList(node.left, lst);
+        lst.add(node.element);
+        toList(node.right, lst);
     }
 
     private Node<E> binarySearch(Node<E> node, E element)
@@ -66,7 +87,11 @@ public class MyBinarySearchTree<E extends Comparable<E>>
 
     private Node<E> add(Node<E> node, E element)
     {
-        if(node == null){return new Node<>(element);};
+        if(this.root.element == null) {this.root.element = element;}
+
+        if(node == null){
+            return new Node<>(element);
+        };
 
         if(element.compareTo(node.element) < 0)
         {
