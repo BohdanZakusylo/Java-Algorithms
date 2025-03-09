@@ -41,7 +41,6 @@ public class QueueSorts
 
         queue.removeAll();
 
-        // Main comparison loop
         while (!leftQueue.isEmpty() && !rightQueue.isEmpty())
         {
             if (leftQueue.peek().compareTo(rightQueue.peek()) <= 0)
@@ -54,12 +53,10 @@ public class QueueSorts
             }
         }
 
-        // Add remaining elements from leftQueue (if any)
         while (!leftQueue.isEmpty()) {
             queue.enqueue(leftQueue.dequeue());
         }
 
-        // Add remaining elements from rightQueue (if any)
         while (!rightQueue.isEmpty()) {
             queue.enqueue(rightQueue.dequeue());
         }
@@ -71,22 +68,40 @@ public class QueueSorts
     }
 
 
-    static public <E extends Comparable<E>> void bubbleSort(QueueImplementation<E> queue)
-    {
-//        int length = queue.getSize();
-//        boolean swapped = true;
-//
-//        while (!queue.isEmpty() && swapped)
-//        {
-//            swapped = false;
-//
-//            for (int i = 0; i < length - 1; i++)
-//            {
-//                E firstElement = queue.dequeue();
-//                E secondElement = queue.dequeue();
-//
-//                if
-//            }
-//        }
+    static public <E extends Comparable<E>> QueueImplementation<E> selectionSort(QueueImplementation<E> queue) {
+        if (queue.getSize() <= 1) {
+            return queue;
+        }
+
+        QueueImplementation<E> sortedQueue = new QueueImplementation<E>();
+
+        while (!queue.isEmpty()) {
+            E min = findAndRemoveMin(queue);
+            sortedQueue.enqueue(min);
+
+        }
+
+        return sortedQueue;
+    }
+
+    static private <E extends Comparable<E>> E findAndRemoveMin(QueueImplementation<E> queue) {
+        if (queue.isEmpty()) {
+            return null;
+        }
+
+        int size = queue.getSize();
+        E min = queue.dequeue();
+
+        for (int i = 1; i < size; i++) {
+            E current = queue.dequeue();
+            if (current.compareTo(min) < 0) {
+                queue.enqueue(min);
+                min = current;
+            } else {
+                queue.enqueue(current);
+            }
+        }
+        System.out.println();
+        return min;
     }
 }
