@@ -1,8 +1,11 @@
 import BinarySearchTree.MyBinarySearchTree;
+import Profiler.Profiler;
 import Queue.QueueImplementation;
 import Queue.QueueSorts;
 
 import java.util.List;
+
+import static Queue.QueueProfiler.*;
 
 public class Main
 {
@@ -21,8 +24,11 @@ public class Main
         queue.addAll(List.of(array));
 
 //        QueueSorts.mergeSort(queue);
+        queue.printToArray();
         queue = QueueSorts.selectionSort(queue);
         queue.printToArray();
+
+
 
     }
 }

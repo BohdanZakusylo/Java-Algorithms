@@ -32,13 +32,6 @@ public class QueueSorts
 
     private static <E extends Comparable<E>> void merge(QueueImplementation<E> leftQueue, QueueImplementation<E> rightQueue, QueueImplementation<E> queue)
     {
-
-        System.out.println("----------------------------------------------------");
-        System.out.print("LeftQueue");
-        leftQueue.printToArray();
-        System.out.print("RightQueue");
-        rightQueue.printToArray();
-
         queue.removeAll();
 
         while (!leftQueue.isEmpty() && !rightQueue.isEmpty())
@@ -53,55 +46,57 @@ public class QueueSorts
             }
         }
 
-        while (!leftQueue.isEmpty()) {
+        while (!leftQueue.isEmpty())
+        {
             queue.enqueue(leftQueue.dequeue());
         }
 
-        while (!rightQueue.isEmpty()) {
+        while (!rightQueue.isEmpty())
+        {
             queue.enqueue(rightQueue.dequeue());
         }
-
-        System.out.print("MainQueue");
-        queue.printToArray();
-        System.out.println("----------------------------------------------------");
-
     }
 
 
     static public <E extends Comparable<E>> QueueImplementation<E> selectionSort(QueueImplementation<E> queue) {
-        if (queue.getSize() <= 1) {
+        if (queue.getSize() <= 1)
+        {
             return queue;
         }
 
         QueueImplementation<E> sortedQueue = new QueueImplementation<E>();
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty())
+        {
             E min = findAndRemoveMin(queue);
             sortedQueue.enqueue(min);
-
         }
 
         return sortedQueue;
     }
 
     static private <E extends Comparable<E>> E findAndRemoveMin(QueueImplementation<E> queue) {
-        if (queue.isEmpty()) {
+        if (queue.isEmpty())
+        {
             return null;
         }
 
         int size = queue.getSize();
         E min = queue.dequeue();
 
-        for (int i = 1; i < size; i++) {
+        for (int i = 1; i < size; i++)
+        {
             E current = queue.dequeue();
-            if (current.compareTo(min) < 0) {
+            if (current.compareTo(min) < 0)
+            {
                 queue.enqueue(min);
                 min = current;
-            } else {
+            }
+            else
+            {
                 queue.enqueue(current);
             }
         }
-        System.out.println();
         return min;
     }
 }

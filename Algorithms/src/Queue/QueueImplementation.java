@@ -10,7 +10,7 @@ public class QueueImplementation<E extends Comparable<E>>
 
     public QueueImplementation()
     {
-        queue = new ArrayList<>();
+        queue = new LinkedList<>();
         size = 0;
     }
 
@@ -113,7 +113,7 @@ public class QueueImplementation<E extends Comparable<E>>
 
     public void removeAll()
     {
-        this.queue = new ArrayList<>();
+        this.queue = new LinkedList<>();
         this.size = 0;
     }
 
