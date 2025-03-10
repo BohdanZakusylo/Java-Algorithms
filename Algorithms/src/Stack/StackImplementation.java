@@ -1,11 +1,11 @@
-/*
+package Stack;/*
 * Implementation of a Stack data structure
 * Extends from Vector, similar to the java.util implementation
 * Implements all methods specified in the Java 8 documentation plus a few extras
  */
 import java.util.*;
 
-public class StackImplementation<E> extends Vector<E>
+public class StackImplementation<E extends Comparable<E>> extends Vector<E>
 {
     private ArrayList<E> stack;
 
@@ -16,12 +16,18 @@ public class StackImplementation<E> extends Vector<E>
 
     public StackImplementation(Collection<? extends E> c)
     {
+        this.stack = new ArrayList<>();
         this.stack.addAll(c);
     }
 
     public ArrayList<E> getStack()
     {
         return this.stack;
+    }
+
+    public int size()
+    {
+        return this.stack.size();
     }
 
     public boolean empty()
@@ -34,12 +40,12 @@ public class StackImplementation<E> extends Vector<E>
         this.stack.add(e);
     }
 
-    public void pushAll(List<? extends E> c)
+    public void addAll(List<E> elements)
     {
-        // Adds all elements of a List to the stack in order by reversing the list before adding it
-        // Generic collections do not work with reverse
-        Collections.reverse(c);
-        this.stack.addAll(c);
+        for (E e : elements)
+        {
+            push(e);
+        }
     }
 
     public E pop()
@@ -50,20 +56,40 @@ public class StackImplementation<E> extends Vector<E>
 
     public E peek()
     {
+        if (empty())
+        {
+            throw new EmptyStackException();
+        }
+
         return this.stack.get(this.stack.size() - 1);
+    }
+
+    public void print()
+    {
+        for (E e : this.stack)
+        {
+            System.out.println(e);
+        }
+    }
+
+    public void reverse() {
+        Collections.reverse(this.stack);
     }
 
     public int search(E searchElement)
     {
         StackImplementation<E> tempStack = new StackImplementation<>(this.stack);
+        int pos = 1; // 1-based position from top of stack
 
-        while (!tempStack.isEmpty())
+        while (!tempStack.empty())
         {
             E element = tempStack.pop();
             if (equals(element, searchElement))
             {
-                return tempStack.size() - 1;
+                return pos;
             }
+
+            pos++;
         }
 
         return -1;
