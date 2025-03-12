@@ -35,17 +35,24 @@ public class StackImplementation<E extends Comparable<E>> extends Vector<E>
         return this.stack.isEmpty();
     }
 
+    public boolean addAll(Collection<? extends E> c)
+    {
+        if (c.isEmpty())
+        {
+            return false;
+        }
+
+        for (E e : c)
+        {
+            this.push(e);
+        }
+
+        return true;
+    }
+
     public void push(E e)
     {
         this.stack.add(e);
-    }
-
-    public void addAll(List<E> elements)
-    {
-        for (E e : elements)
-        {
-            push(e);
-        }
     }
 
     public E pop()
