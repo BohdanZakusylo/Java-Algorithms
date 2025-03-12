@@ -53,11 +53,13 @@ public class MyBinarySearchTree<E extends Comparable<E>>
         if(node == null){
             return;
         }
+
         toList(node.left, lst);
         lst.add(node.element);
         toList(node.right, lst);
     }
 
+    //binary search algorithm
     private Node<E> binarySearch(Node<E> node, E element)
     {
         while (node != null)
@@ -85,6 +87,7 @@ public class MyBinarySearchTree<E extends Comparable<E>>
         inorderTraversal(node.right);
     }
 
+    //adding elements based on the root node. smaller -> left subtree, bigger -> right subtree
     private Node<E> add(Node<E> node, E element)
     {
         if(this.root.element == null) {this.root.element = element;}
