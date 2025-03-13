@@ -1,11 +1,13 @@
 import BinarySearchTree.MyBinarySearchTree;
-import Profiler.Profiler;
 import Queue.QueueImplementation;
 import Queue.QueueSorts;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import static Queue.QueueProfiler.*;
+import static Queue.Profiler.timeMe;
+
 
 public class Main
 {
@@ -19,16 +21,26 @@ public class Main
 //
 //        mbt.printTree();
 
-//        QueueImplementation<Integer> queue = new QueueImplementation<Integer>();
-//        Integer[] array = {1,5,7,3,4,6,1,43,5,67,2,3,765,34,23,543,7634,1234,5346,3,23,-666, 234, 123,543,654,7654,876,23,345,2,43,-234};
-//        queue.addAll(List.of(array));
+        QueueImplementation<Integer> queue = new QueueImplementation<Integer>();
+        ArrayList<Integer> array = new ArrayList<>();
+        Random ran = new Random();
+        for (int i = 0; i < 100; i++)
+        {
+            array.add(ran.nextInt());
+        }
 
-//        QueueSorts.mergeSort(queue);
-//        queue.printToArray();
-//        queue = QueueSorts.selectionSort(queue);
-//        queue.printToArray()
-//        profileQueueMergeSort();
-        profileQueueSelectionSort();
+        queue.addAll(array);
+        queue.printToArray();
+
+        Double timeTaken = timeMe(() ->
+        {
+            QueueSorts.mergeSort(queue);
+        });
+
+        System.out.println(timeTaken);
+
+        queue.printToArray();
+
 
 
     }
