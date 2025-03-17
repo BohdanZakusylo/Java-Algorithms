@@ -76,7 +76,6 @@ public class MyBinarySearchTree<E extends Comparable<E>>
         }
         return null;
     }
-
     private void inorderTraversal(Node<E> node)
     {
         if(node == null) {return;}
@@ -143,5 +142,41 @@ public class MyBinarySearchTree<E extends Comparable<E>>
         }
         return node;
     }
+
+    public boolean jumpSearch(E element)
+    {
+        List<E> lst = this.toList();
+        int size = lst.size();
+        int jumpStep = (int) Math.sqrt(size);
+
+        return this.jumpSearch(element, lst, size, jumpStep, 0, 0);
+    }
+
+    //my own, recursive implementation of the Jump Search Algorithm
+    private boolean jumpSearch(E element, List<E> lst, int size, int jumpStep, int currentIndex, int prev)
+    {
+        if (currentIndex >= size) {
+            return false;
+        }
+
+        if (lst.get(currentIndex) == element) {
+            return true;
+        }
+
+        if (lst.get(currentIndex).compareTo(element) < 0) {
+            prev = currentIndex;
+            currentIndex = Math.min(currentIndex + jumpStep, size - 1);
+
+            return jumpSearch(element, lst, size, jumpStep, currentIndex, prev);
+        }
+
+        for (int i = prev; i <= currentIndex; i++) {
+            if (lst.get(i).equals(element)) {
+                return true;
+            }
+        }
+
+        return false;
+    };
 
 }
