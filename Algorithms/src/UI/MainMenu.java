@@ -1,6 +1,8 @@
 package UI;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
     private JButton queueButton;
@@ -16,6 +18,15 @@ public class MainMenu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(contentPane);
         pack();
+
+        queueButton.addActionListener(e -> {
+            setContentPane(new QueuePanel(this, contentPane)); // Pass the original contentPane
+            revalidate();
+            repaint();
+        });
     }
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(MainMenu::new);
+    }
 }

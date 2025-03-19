@@ -117,9 +117,9 @@ public class QueueImplementation<E extends Comparable<E>>
         this.size = 0;
     }
 
-    public void printToArray()
+    public String printToArray()
     {
-        System.out.println(Arrays.toString(this.queue.toArray()));
+        return Arrays.toString(this.queue.toArray());
     }
 
     public E peek()
