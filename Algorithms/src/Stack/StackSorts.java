@@ -4,11 +4,11 @@ public class StackSorts {
 
     private static <E extends Comparable<E>> int partition(StackImplementation stack, int low, int high)
     {
-        StackImplementation highStack = new StackImplementation();
-        StackImplementation lowStack = new StackImplementation();
+        StackImplementation highStack = new StackImplementation(stack.size());
+        StackImplementation lowStack = new StackImplementation(stack.size());
 
         int size = stack.size();
-        for (int i = 0; i < (size - 1) - high; i++)
+        for (int i = 0; i < (size) - high; i++)
         {
             highStack.push(stack.pop());
         }
@@ -35,26 +35,19 @@ public class StackSorts {
             stack.push(highStack.pop());
         }
 
-        System.out.println("------------Sorted stack state------------");
-        stack.print();
-        System.out.println("------------------------------------------");
         return i + 1;
     }
 
     public static <E extends Comparable<E>> void quickSortIter(StackImplementation stack)
     {
-        StackImplementation<Integer> auxStack = new StackImplementation();
+        StackImplementation<Integer> auxStack = new StackImplementation(stack.size());
         int low = 0;
-        int high = stack.size() - 1;
+        int high = stack.size();
 
         auxStack.push(low);
         auxStack.push(high);
         while (!auxStack.empty())
         {
-            System.out.println("------------Current stack------------");
-            auxStack.print();
-            System.out.println("-------------------------------------");
-            System.out.println();
             high = auxStack.pop();
             low = auxStack.pop();
 
