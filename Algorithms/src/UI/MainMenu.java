@@ -16,6 +16,12 @@ public class MainMenu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(contentPane);
         pack();
+
+        binarySearchTreeButton.addActionListener(e ->{
+            setContentPane(new BinarySearchTreeUI(this, contentPane));
+            revalidate();
+            repaint();
+        });
     }
 
 }
