@@ -47,14 +47,6 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="ec197" class="javax.swing.JButton" binding="backButton">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="&lt;-"/>
-        </properties>
-      </component>
       <scrollpane id="46e30">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -70,6 +62,14 @@
           </component>
         </children>
       </scrollpane>
+      <component id="ec197" class="javax.swing.JButton" binding="backButton">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="&lt;-"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
