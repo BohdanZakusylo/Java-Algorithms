@@ -21,7 +21,7 @@ public class QueuePanel extends JPanel
     private JButton backButton;
     private JTextArea output;
 
-    public QueuePanel(JFrame parentFrame, JPanel mainMenuPanel, SelectedData<String> selectedData)
+    public QueuePanel(JFrame parentFrame, JPanel mainMenuPanel, SelectedData<?> selectedData)
     {  // Pass original contentPane
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(queuePanel);
@@ -35,19 +35,12 @@ public class QueuePanel extends JPanel
 
         mergeSortButton.addActionListener(e ->
         {
-
             output.setText(null);
-            QueueImplementation<Integer> queue = new QueueImplementation<Integer>();
-            ArrayList<Integer> array = new ArrayList<>();
-            Random random = new Random();
-            for (int i = 0; i < 10; i++)
-            {
-                array.add(random.nextInt(100));
-            }
+            QueueImplementation<?> queue = new QueueImplementation<>();
+            List<?> array = new ArrayList<>(selectedData.getDataPoints());
             queue.addAll(array);
+
             output.append("Original Queue elements: ");
-            output.append("\n");
-            output.append(queue.printToArray());
             output.append("\n");
             output.append("------------------------------------------------------------");
             output.append("\n");
@@ -59,38 +52,25 @@ public class QueuePanel extends JPanel
 
             output.append("Sorted using mergesort in: " + time + " milliseconds");
             output.append("\n");
-            output.append(queue.printToArray());
-
+            System.out.println(queue.printToArray());
         });
 
-        selectionSortButton.addActionListener(e ->
-        {
+        selectionSortButton.addActionListener(e -> {
             output.setText(null);
 
-            AtomicReference<QueueImplementation<Integer>> queue = new AtomicReference<>(new QueueImplementation<Integer>());
-            ArrayList<Integer> array = new ArrayList<>();
-            Random random = new Random();
-            for (int i = 0; i < 10; i++)
-            {
-                array.add(random.nextInt(100));
-            }
-            queue.get().addAll(array);
+            // Get the list of data points
+            ArrayList<?> array = new ArrayList<>(selectedData.getDataPoints());
 
-            output.append("Original Queue elements: ");
-            output.append("\n");
-            output.append(queue.get().printToArray());
-            output.append("\n");
-            output.append("------------------------------------------------------------");
-            output.append("\n");
-            double time;
-            time = timeMe(() ->
-            {
-                queue.set(selectionSort(queue.get()));
+            // Create a queue with a proper generic type
+            QueueImplementation<?> queue = new QueueImplementation<>();
+            queue.addAll(array);
+
+            // Measure sorting time
+            double time = timeMe(() -> {
+                selectionSort(queue);
             });
 
             output.append("Sorted using SelectionSort in: " + time + " milliseconds");
-            output.append("\n");
-            output.append(queue.get().printToArray());
         });
 
 

@@ -103,11 +103,11 @@ public class QueueImplementation<E extends Comparable<E>>
         }
     }
 
-    public void addAll(List<E> elements)
+    public void addAll(List<?> elements)
     {
-        for (E element: elements)
+        for (Object element: elements)
         {
-            enqueue(element);
+            enqueue((E) element);
         }
     }
 
