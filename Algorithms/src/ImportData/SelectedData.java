@@ -54,7 +54,8 @@ public class SelectedData<E>
 
         List<E> convertedList = new ArrayList<>();
 
-        switch (type) {
+        switch (type)
+        {
             case "int":
                 for (String item : dataPoints)
                 {
@@ -123,5 +124,4 @@ public class SelectedData<E>
             }
         }
     }
-
 }
