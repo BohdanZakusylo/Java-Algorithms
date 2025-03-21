@@ -1,8 +1,10 @@
 package UI;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-public class MainMenu extends JFrame {
+public class MainMenu<E> extends JFrame {
     private JButton queueButton;
     private JButton stackButton;
     private JButton quitButton;
@@ -17,8 +19,9 @@ public class MainMenu extends JFrame {
         setContentPane(contentPane);
         pack();
 
+        ArrayList<Integer> ints = new ArrayList<>(Arrays.asList(23, 1, 5, 7, 123, 56, 78, 76, 234,111));
         binarySearchTreeButton.addActionListener(e ->{
-            setContentPane(new BinarySearchTreeUI(this, contentPane));
+            setContentPane(new BinarySearchTreeUI<Integer>(this, contentPane, ints));
             revalidate();
             repaint();
         });
