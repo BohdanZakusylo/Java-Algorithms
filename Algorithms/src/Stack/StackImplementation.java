@@ -1,38 +1,42 @@
-package Stack;/*
+package Stack;
+/*
 * Implementation of a Stack data structure
 * Extends from Vector, similar to the java.util implementation
 * Implements all methods specified in the Java 8 documentation plus a few extras
  */
 import java.util.*;
 
-public class StackImplementation<E extends Comparable<E>> extends Vector<E>
+public class StackImplementation<E extends Comparable<E>>
 {
-    private ArrayList<E> stack;
+    private Object[] stack;
+    private int size;
 
-    public StackImplementation()
+    public StackImplementation(int size)
     {
-        this.stack = new ArrayList<>();
+        this.size = -1;
+        this.stack = new Object[size];
     }
 
     public StackImplementation(Collection<? extends E> c)
     {
-        this.stack = new ArrayList<>();
-        this.stack.addAll(c);
+        this.size = c.size() - 1;
+        this.stack = new Object[size];
+        addAll(c);
     }
 
-    public ArrayList<E> getStack()
+    public E[] getStack()
     {
-        return this.stack;
+        return (E[]) this.stack;
     }
 
     public int size()
     {
-        return this.stack.size();
+        return this.size;
     }
 
     public boolean empty()
     {
-        return this.stack.isEmpty();
+        return this.size == -1;
     }
 
     public boolean addAll(Collection<? extends E> c)
@@ -52,13 +56,20 @@ public class StackImplementation<E extends Comparable<E>> extends Vector<E>
 
     public void push(E e)
     {
-        this.stack.add(e);
+        if (size == (stack.length - 1))
+        {
+            throw new StackOverflowError();
+        }
+        this.size++;
+        this.stack[this.size] = e;
     }
 
     public E pop()
     {
-        E element = this.stack.remove(this.stack.size() - 1);
-        return element;
+        Object element = this.stack[this.size];
+        this.stack[this.size] = null;
+        this.size--;
+        return (E) element;
     }
 
     public E peek()
@@ -68,41 +79,42 @@ public class StackImplementation<E extends Comparable<E>> extends Vector<E>
             throw new EmptyStackException();
         }
 
-        return this.stack.get(this.stack.size() - 1);
+        return (E) this.stack[this.size];
     }
 
     public void print()
     {
-        for (E e : this.stack)
+        for (Object e : this.stack)
         {
             System.out.println(e);
         }
     }
 
-    public void reverse() {
-        Collections.reverse(this.stack);
+    public void reverse()
+    {
+        for (int i = 0; i < this.size / 2; i++)
+        {
+            Object element = this.stack[i];
+            this.stack[i] = this.stack[this.size - 1 - i];
+            this.stack[this.size - 1 - i] = element;
+        }
     }
 
     public int search(E searchElement)
     {
-        StackImplementation<E> tempStack = new StackImplementation<>(this.stack);
-        int pos = 1; // 1-based position from top of stack
-
-        while (!tempStack.empty())
+        for (int pos = this.size; pos > 0; pos--)
         {
-            E element = tempStack.pop();
+            Object element = this.stack[pos];
             if (equals(element, searchElement))
             {
                 return pos;
             }
-
-            pos++;
         }
 
         return -1;
     }
 
-    private boolean equals(E target, E element)
+    private boolean equals(Object target, Object element)
     {
         if (target == null)
         {

@@ -1,9 +1,11 @@
 package UI;
 
+import ImportData.SelectedData;
 import Queue.QueueImplementation;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -19,7 +21,7 @@ public class QueuePanel extends JPanel
     private JButton backButton;
     private JTextArea output;
 
-    public QueuePanel(JFrame parentFrame, JPanel mainMenuPanel)
+    public QueuePanel(JFrame parentFrame, JPanel mainMenuPanel, SelectedData<String> selectedData)
     {  // Pass original contentPane
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(queuePanel);
