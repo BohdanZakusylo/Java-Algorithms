@@ -4,7 +4,6 @@ import BinarySearchTree.MyBinarySearchTree;
 import Queue.Profiler;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
@@ -18,7 +17,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
     private JPanel bstPanel;
     private JTextField BSTOperationsInputElementTextField;
     private JLabel outputLabel;
-
+    private JButton backButton;
     private MyBinarySearchTree<E> mbt;
 
     private final String shownText = "Output: ";
@@ -33,8 +32,14 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
         this.outputLabel.setText(this.shownText);
 
         //ActionListeners
+        backButton.addActionListener(e ->
+        {
+            parentFrame.setContentPane(mainManyPanel);
+            parentFrame.revalidate();
+            parentFrame.repaint();
+        });
+
         this.printTreeButton.addActionListener(e ->{
-            System.out.println("Hello");
             this.printTree();
         });
 
