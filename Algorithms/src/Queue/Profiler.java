@@ -8,6 +8,6 @@ public class Profiler
         function.run();
         long endTime = System.nanoTime();
 
-        return (endTime - startTime) / 1_000_000.0; // Convert nanoseconds to milliseconds
+        return (double) Math.round((endTime - startTime) / 100_000_000.0) / 10; // Convert nanoseconds to milliseconds
     }
 }

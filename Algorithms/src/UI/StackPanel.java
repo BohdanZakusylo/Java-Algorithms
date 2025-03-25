@@ -16,6 +16,7 @@ public class StackPanel extends JPanel
     private JButton quickSortButton;
     private JButton backButton;
     private JTextArea output;
+    private JLabel slowLabel;
 
     public StackPanel(JFrame parentFrame, JPanel mainMenuPanel, SelectedData<?> selectedData)
     {  // Pass original contentPane
@@ -45,7 +46,7 @@ public class StackPanel extends JPanel
                 quickSortIter(stack);
             });
 
-            output.append("Sorted using mergesort in: " + time + " milliseconds");
+            output.append("Sorted using mergesort in: " + time + " seconds");
             output.append("\n");
             System.out.println(stack.print());
         });
