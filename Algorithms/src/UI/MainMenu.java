@@ -78,6 +78,13 @@ public class MainMenu extends JFrame {
             revalidate();
             repaint();
         });
+
+        stackButton.addActionListener(e -> {
+            setContentPane(new StackPanel(this, contentPane, selectedData));
+            revalidate();
+            repaint();
+        });
+
     }
 
 }

@@ -13,14 +13,14 @@ public class StackImplementation<E extends Comparable<E>>
 
     public StackImplementation(int size)
     {
-        this.size = -1;
+        this.size = 0;
         this.stack = new Object[size];
     }
 
-    public StackImplementation(Collection<? extends E> c)
+    public StackImplementation(Collection<?> c)
     {
-        this.size = c.size() - 1;
-        this.stack = new Object[size];
+        this.size = 0;
+        this.stack = new Object[c.size()];
         addAll(c);
     }
 
@@ -36,19 +36,19 @@ public class StackImplementation<E extends Comparable<E>>
 
     public boolean empty()
     {
-        return this.size == -1;
+        return this.size == 0;
     }
 
-    public boolean addAll(Collection<? extends E> c)
+    public boolean addAll(Collection<?> c)
     {
         if (c.isEmpty())
         {
             return false;
         }
 
-        for (E e : c)
+        for (Object o : c)
         {
-            this.push(e);
+            this.push((E) o);
         }
 
         return true;
@@ -56,18 +56,18 @@ public class StackImplementation<E extends Comparable<E>>
 
     public void push(E e)
     {
-        if (size == (stack.length - 1))
+        if (size == (stack.length))
         {
             throw new StackOverflowError();
         }
-        this.size++;
         this.stack[this.size] = e;
+        this.size++;
     }
 
     public E pop()
     {
-        Object element = this.stack[this.size];
-        this.stack[this.size] = null;
+        Object element = this.stack[this.size - 1];
+        this.stack[this.size - 1] = null;
         this.size--;
         return (E) element;
     }
@@ -82,7 +82,7 @@ public class StackImplementation<E extends Comparable<E>>
         return (E) this.stack[this.size];
     }
 
-    public void print()
+    public void printLn()
     {
         for (Object e : this.stack)
         {
@@ -98,6 +98,11 @@ public class StackImplementation<E extends Comparable<E>>
             this.stack[i] = this.stack[this.size - 1 - i];
             this.stack[this.size - 1 - i] = element;
         }
+    }
+
+    public String print()
+    {
+        return Arrays.toString(this.stack);
     }
 
     public int search(E searchElement)

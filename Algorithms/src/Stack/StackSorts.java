@@ -8,7 +8,7 @@ public class StackSorts {
         StackImplementation lowStack = new StackImplementation(stack.size());
 
         int size = stack.size();
-        for (int i = 0; i < (size) - high; i++)
+        for (int i = 0; i < (size - 1) - high; i++)
         {
             highStack.push(stack.pop());
         }
@@ -42,7 +42,7 @@ public class StackSorts {
     {
         StackImplementation<Integer> auxStack = new StackImplementation(stack.size());
         int low = 0;
-        int high = stack.size();
+        int high = stack.size() - 1;
 
         auxStack.push(low);
         auxStack.push(high);
