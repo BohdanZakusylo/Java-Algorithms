@@ -20,9 +20,7 @@ public class MyBinarySearchTree<E extends Comparable<E>>
 
     public boolean binarySearch(E element)
     {
-        System.out.println(element);
         Node<E> node = this.binarySearch(this.root, element);
-        System.out.println(node);
         return node != null;
     }
 

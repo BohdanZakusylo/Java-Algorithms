@@ -16,8 +16,8 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
     private JButton printTreeButton;
     private JPanel bstPanel;
     private JTextField BSTOperationsInputElementTextField;
-    private JLabel outputLabel;
     private JButton backButton;
+    private JTextArea outputArea;
     private MyBinarySearchTree<E> mbt;
 
     private final String shownText = "Output: ";
@@ -29,8 +29,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
         List<?> selectedDataLst = selectedData.getDataPoints();
         //BST Creation
         this.mbt = this.createMBT(selectedDataLst);
-        System.out.println(this.mbt);
-        this.outputLabel.setText(this.shownText);
+        this.outputArea.setText(this.shownText);
 
         //ActionListeners
         backButton.addActionListener(e ->
@@ -49,7 +48,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
 
             if(userInput.isEmpty())
             {
-                this.outputLabel.setText("The input should not be empty");
+                this.outputArea.setText("The input should not be empty");
                 return;
             }
 
@@ -64,7 +63,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
                 catch (Exception ex)
                 {
                     ex.printStackTrace();
-                    this.outputLabel.setText("Error, try again");
+                    this.outputArea.setText("Error, pleae try again");
                 }
             }else if (Objects.equals(dataType, "int"))
             {
@@ -75,7 +74,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
                 catch(Exception ex)
                 {
                     ex.printStackTrace();
-                    this.outputLabel.setText("Error, please try again");
+                    this.outputArea.setText("Error, please try again");
                 }
             }
             else if(Objects.equals(dataType, "double"))
@@ -88,12 +87,12 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
                 catch (Exception ex)
                 {
                     ex.printStackTrace();
-                    this.outputLabel.setText("Error, try again");
+                    this.outputArea.setText("Error, try again");
                 }
             }
             else
             {
-                this.outputLabel.setText("Error");
+                this.outputArea.setText("Error");
             }
         });
 
@@ -102,7 +101,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
 
             if(userInput.isEmpty())
             {
-                this.outputLabel.setText("The input should not be empty");
+                this.outputArea.setText("The input should not be empty");
                 return;
             }
 
@@ -117,7 +116,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
                 catch (Exception ex)
                 {
                     ex.printStackTrace();
-                    this.outputLabel.setText("Error, try again");
+                    this.outputArea.setText("Error, try again");
                 }
             }else if (Objects.equals(dataType, "int"))
             {
@@ -128,7 +127,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
                 catch(Exception ex)
                 {
                     ex.printStackTrace();
-                    this.outputLabel.setText("Error, please try again");
+                    this.outputArea.setText("Error, please try again");
                 }
             }
             else if(Objects.equals(dataType, "double"))
@@ -141,12 +140,12 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
                 catch (Exception ex)
                 {
                     ex.printStackTrace();
-                    this.outputLabel.setText("Error, try again");
+                    this.outputArea.setText("Error, try again");
                 }
             }
             else
             {
-                this.outputLabel.setText("Error");
+                this.outputArea.setText("Error");
             }
         });
     }
@@ -171,7 +170,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
         });
         List<E> lst = lstHolder[0];
 
-        this.outputLabel.setText("Result: " + lst + " Time taken: " + time);
+        this.outputArea.setText("Result: " + lst + " Time taken: " + time);
     }
 
     private void binarySearch(E element)
@@ -182,7 +181,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
             this.mbt.binarySearch(element);
         });
 
-        this.outputLabel.setText("Result: " + (!isContain ? " Does not contain " : " Contains " + element + " Time taken: " + time));
+        this.outputArea.setText("Result: " + (!isContain ? " Does not contain " : " Contains ") + element + " Time taken: " + time);
     }
 
     private void jumpSearch(E element)
@@ -193,6 +192,6 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
             this.mbt.jumpSearch(element);
         });
 
-        this.outputLabel.setText("Result: " + (!isContain ? " Does not contain " : " Contains " + element + "Time taken: " + time));
+        this.outputArea.setText("Result: " + (!isContain ? " Does not contain " : " Contains ") + element + " Time taken: " + time);
     }
 }
