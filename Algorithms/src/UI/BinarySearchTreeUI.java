@@ -1,10 +1,12 @@
 package UI;
 
 import BinarySearchTree.MyBinarySearchTree;
+import ImportData.SelectedData;
 import Queue.Profiler;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.Objects;
 
 public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
 {
@@ -12,8 +14,6 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
     private JTextArea textArea;
     private JButton jumpSearchButton;
     private JButton printTreeButton;
-    private JButton addButton;
-    private JButton removeButton;
     private JPanel bstPanel;
     private JTextField BSTOperationsInputElementTextField;
     private JLabel outputLabel;
@@ -22,13 +22,14 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
 
     private final String shownText = "Output: ";
 
-    public BinarySearchTreeUI(JFrame parentFrame, JPanel mainManyPanel, List<E> elements)
+    public BinarySearchTreeUI(JFrame parentFrame, JPanel mainManyPanel, SelectedData<?> selectedData)
     {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(bstPanel);
-
+        List<?> selectedDataLst = selectedData.getDataPoints();
         //BST Creation
-        this.mbt = this.createMBT(elements);
+        this.mbt = this.createMBT(selectedDataLst);
+        System.out.println(this.mbt);
         this.outputLabel.setText(this.shownText);
 
         //ActionListeners
@@ -43,29 +44,115 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
             this.printTree();
         });
 
-        this.removeButton.addActionListener(e->{
-
-        });
-
         this.binarySearchButton.addActionListener(e->{
+            String userInput = this.textArea.getText();
+            if(userInput.isEmpty())
+            {
+                this.outputLabel.setText("The input should not be empty");
+            }
 
+            String dataType = selectedData.determineTypeWithRegex(userInput);
+
+            if(Objects.equals(dataType, "string"))
+            {
+                try
+                {
+                    this.binarySearch((E) userInput);
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    this.outputLabel.setText("Error, try again");
+                }
+            }else if (Objects.equals(dataType, "int"))
+            {
+                try{
+                    Integer data = Integer.parseInt(userInput);
+                    this.binarySearch((E) data);
+                }
+                catch(Exception ex)
+                {
+                    ex.printStackTrace();
+                    this.outputLabel.setText("Error, please try again");
+                }
+            }
+            else if(Objects.equals(dataType, "double"))
+            {
+                try
+                {
+                    Double data = Double.parseDouble(userInput);
+                    this.binarySearch((E) data);
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    this.outputLabel.setText("Error, try again");
+                }
+            }
+            else
+            {
+                this.outputLabel.setText("Error");
+            }
         });
 
         this.jumpSearchButton.addActionListener(e->{
+            String userInput = this.textArea.getText();
+            if(userInput.isEmpty())
+            {
+                this.outputLabel.setText("The input should not be empty");
+            }
 
-        });
+            String dataType = selectedData.determineTypeWithRegex(userInput);
 
-        this.addButton.addActionListener(e->{
-
+            if(Objects.equals(dataType, "string"))
+            {
+                try
+                {
+                    this.jumpSearch((E) userInput);
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    this.outputLabel.setText("Error, try again");
+                }
+            }else if (Objects.equals(dataType, "int"))
+            {
+                try{
+                    Integer data = Integer.parseInt(userInput);
+                    this.jumpSearch((E) data);
+                }
+                catch(Exception ex)
+                {
+                    ex.printStackTrace();
+                    this.outputLabel.setText("Error, please try again");
+                }
+            }
+            else if(Objects.equals(dataType, "double"))
+            {
+                try
+                {
+                    Double data = Double.parseDouble(userInput);
+                    this.jumpSearch((E) data);
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    this.outputLabel.setText("Error, try again");
+                }
+            }
+            else
+            {
+                this.outputLabel.setText("Error");
+            }
         });
     }
 
-    private MyBinarySearchTree<E> createMBT(List<E> elements)
+    private MyBinarySearchTree<E> createMBT(List<?> selectedDataLst)
     {
         MyBinarySearchTree<E> mbt = new MyBinarySearchTree<>();
-        for(E element: elements)
+        for(Object element: selectedDataLst)
         {
-            mbt.addValue(element);
+            mbt.addValue((E) element);
         }
 
         return mbt;
@@ -83,15 +170,6 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
         this.outputLabel.setText("Result: " + lst + " Time taken: " + time);
     }
 
-    private void removeElement(E element)
-    {
-        double time = Profiler.timeMe(()->{
-            this.mbt.remove(element);
-        });
-
-        this.outputLabel.setText("Result: " + this.mbt.preorderTraversal() + " Time taken: " + time);
-    }
-
     private void binarySearch(E element)
     {
         boolean isContain = this.mbt.binarySearch(element);
@@ -100,7 +178,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
             this.mbt.binarySearch(element);
         });
 
-        this.outputLabel.setText("Result: " + (!isContain ? " Does not contain " : " Contains " + element + "Time taken: " + time));
+        this.outputLabel.setText("Result: " + (!isContain ? " Does not contain " : " Contains " + element + " Time taken: " + time));
     }
 
     private void jumpSearch(E element)
@@ -112,14 +190,5 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
         });
 
         this.outputLabel.setText("Result: " + (!isContain ? " Does not contain " : " Contains " + element + "Time taken: " + time));
-    }
-
-    private void add(E element)
-    {
-        double time = Profiler.timeMe(() ->{
-            this.mbt.addValue(element);
-        });
-
-        this.outputLabel.setText("Result: " + this.mbt.preorderTraversal() + " Time taken: " + time);
     }
 }

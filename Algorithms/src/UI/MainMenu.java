@@ -78,6 +78,13 @@ public class MainMenu extends JFrame {
             revalidate();
             repaint();
         });
+
+        binarySearchTreeButton.addActionListener(e ->{
+            setContentPane(new BinarySearchTreeUI(this, contentPane, selectedData));
+
+            revalidate();
+            repaint();
+        });
     }
 
 }

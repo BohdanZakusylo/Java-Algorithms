@@ -20,8 +20,9 @@ public class MyBinarySearchTree<E extends Comparable<E>>
 
     public boolean binarySearch(E element)
     {
+        System.out.println(element);
         Node<E> node = this.binarySearch(this.root, element);
-
+        System.out.println(node);
         return node != null;
     }
 
@@ -74,7 +75,7 @@ public class MyBinarySearchTree<E extends Comparable<E>>
     {
         while (node != null)
         {
-            if(element == node.element) {return node;}
+            if(element.equals(node.element)) {return node;}
             else if(element.compareTo(node.element) < 0)
             {
                 node = node.left;
