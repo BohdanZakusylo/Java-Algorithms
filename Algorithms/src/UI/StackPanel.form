@@ -49,7 +49,10 @@
           <component id="aadf6" class="javax.swing.JTextArea" binding="output">
             <constraints/>
             <properties>
+              <editable value="false"/>
+              <lineWrap value="true"/>
               <text value=""/>
+              <wrapStyleWord value="true"/>
             </properties>
           </component>
         </children>

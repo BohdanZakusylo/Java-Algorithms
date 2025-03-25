@@ -20,7 +20,7 @@ public class MainMenu extends JFrame {
 
     public MainMenu()
     {
-        setTitle("Something");
+        setTitle("Data Reader");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(contentPane);
         pack();
@@ -71,6 +71,11 @@ public class MainMenu extends JFrame {
 
             revalidate();
             repaint();
+        });
+
+        quitButton.addActionListener(e ->
+        {
+            System.exit(0);
         });
 
         queueButton.addActionListener(e -> {

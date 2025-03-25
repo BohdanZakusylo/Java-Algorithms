@@ -46,8 +46,9 @@ public class StackPanel extends JPanel
                 quickSortIter(stack);
             });
 
-            output.append("Sorted using mergesort in: " + time + " seconds");
+            output.append(stack.print() + "\n");
             output.append("\n");
+            output.append("Sorted using quicksort in: " + time + " seconds");
             System.out.println(stack.print());
         });
 

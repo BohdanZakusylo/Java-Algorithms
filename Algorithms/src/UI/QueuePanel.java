@@ -51,8 +51,9 @@ public class QueuePanel extends JPanel
                 mergeSort(queue);
             });
 
-            output.append("Sorted using mergesort in: " + time + " seconds");
+            output.append(queue.printToArray() + "\n");
             output.append("\n");
+            output.append("Sorted using mergesort in: " + time + " seconds");
             System.out.println(queue.printToArray());
         });
 
@@ -71,6 +72,8 @@ public class QueuePanel extends JPanel
                 selectionSort(queue);
             });
 
+            output.append(queue.printToArray() + "\n");
+            output.append("\n");
             output.append("Sorted using SelectionSort in: " + time + " seconds");
         });
 

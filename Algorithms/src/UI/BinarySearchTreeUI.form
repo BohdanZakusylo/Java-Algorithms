@@ -15,7 +15,9 @@
           </grid>
         </constraints>
         <properties>
+          <lineWrap value="true"/>
           <text value=""/>
+          <wrapStyleWord value="true"/>
         </properties>
       </component>
       <hspacer id="b37ac">
@@ -80,7 +82,11 @@
         <children>
           <component id="13999" class="javax.swing.JTextArea" binding="outputArea">
             <constraints/>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+              <lineWrap value="true"/>
+              <wrapStyleWord value="true"/>
+            </properties>
           </component>
         </children>
       </scrollpane>
