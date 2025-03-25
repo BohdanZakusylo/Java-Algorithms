@@ -46,9 +46,11 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
 
         this.binarySearchButton.addActionListener(e->{
             String userInput = this.textArea.getText();
+
             if(userInput.isEmpty())
             {
                 this.outputLabel.setText("The input should not be empty");
+                return;
             }
 
             String dataType = selectedData.determineTypeWithRegex(userInput);
@@ -97,9 +99,11 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
 
         this.jumpSearchButton.addActionListener(e->{
             String userInput = this.textArea.getText();
+
             if(userInput.isEmpty())
             {
                 this.outputLabel.setText("The input should not be empty");
+                return;
             }
 
             String dataType = selectedData.determineTypeWithRegex(userInput);

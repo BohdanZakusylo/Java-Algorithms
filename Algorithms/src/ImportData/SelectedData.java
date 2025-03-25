@@ -75,7 +75,6 @@ public class SelectedData<E>
                         System.out.println("error with variable: "+ item + " at: " + dataPoints.indexOf(item));
 
                     }
-
                 }
                 break;
 
