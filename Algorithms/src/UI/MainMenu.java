@@ -79,9 +79,14 @@ public class MainMenu extends JFrame {
             repaint();
         });
 
+        stackButton.addActionListener(e -> {
+            setContentPane(new StackPanel(this, contentPane, selectedData));
+            revalidate();
+            repaint();
+        });
+
         binarySearchTreeButton.addActionListener(e ->{
             setContentPane(new BinarySearchTreeUI(this, contentPane, selectedData));
-
             revalidate();
             repaint();
         });
