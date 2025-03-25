@@ -103,11 +103,11 @@ public class QueueImplementation<E extends Comparable<E>>
         }
     }
 
-    public void addAll(List<E> elements)
+    public void addAll(List<?> elements)
     {
-        for (E element: elements)
+        for (Object element: elements)
         {
-            enqueue(element);
+            enqueue((E) element);
         }
     }
 
@@ -117,9 +117,9 @@ public class QueueImplementation<E extends Comparable<E>>
         this.size = 0;
     }
 
-    public void printToArray()
+    public String printToArray()
     {
-        System.out.println(Arrays.toString(this.queue.toArray()));
+        return Arrays.toString(this.queue.toArray());
     }
 
     public E peek()

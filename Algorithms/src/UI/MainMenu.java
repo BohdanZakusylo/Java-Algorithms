@@ -72,6 +72,12 @@ public class MainMenu extends JFrame {
             revalidate();
             repaint();
         });
+
+        queueButton.addActionListener(e -> {
+            setContentPane(new QueuePanel(this, contentPane, selectedData));
+            revalidate();
+            repaint();
+        });
     }
 
 }
