@@ -10,9 +10,18 @@ public class MyBinarySearchTree<E extends Comparable<E>>
     public MyBinarySearchTree() {this.root = new Node<>();}
     public MyBinarySearchTree(E element){this.root = new Node<>(element);}
 
-    public void printTree()
+    public List<E> preorderTraversal()
     {
-        this.inorderTraversal(this.root);
+        List<E> lst = new ArrayList<>();
+        this.preorderTraversal(this.root, lst);
+
+        return lst;
+    }
+
+    public boolean binarySearch(E element)
+    {
+        Node<E> node = this.binarySearch(this.root, element);
+        return node != null;
     }
 
     public void addValue(E element)
@@ -64,7 +73,7 @@ public class MyBinarySearchTree<E extends Comparable<E>>
     {
         while (node != null)
         {
-            if(element == node.element) {return node;}
+            if(element.equals(node.element)) {return node;}
             else if(element.compareTo(node.element) < 0)
             {
                 node = node.left;
@@ -76,14 +85,13 @@ public class MyBinarySearchTree<E extends Comparable<E>>
         }
         return null;
     }
-    private void inorderTraversal(Node<E> node)
+    private void preorderTraversal(Node<E> node, List<E> lst)
     {
         if(node == null) {return;}
 
-        System.out.println(node.element);
-
-        inorderTraversal(node.left);
-        inorderTraversal(node.right);
+        lst.add(node.element);
+        preorderTraversal(node.left, lst);
+        preorderTraversal(node.right, lst);
     }
 
     //adding elements based on the root node. smaller -> left subtree, bigger -> right subtree

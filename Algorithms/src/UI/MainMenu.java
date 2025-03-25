@@ -67,7 +67,7 @@ public class MainMenu extends JFrame {
             selectedDataTextField.setText("Currently selected data is: " + selectedData.getSelectedName());
             selectedDataTextField.setVisible(true);
 
-           // System.out.println(selectedData.getDataPoints().get(0).getClass().getName());
+            // System.out.println(selectedData.getDataPoints().get(0).getClass().getName());
 
             revalidate();
             repaint();
@@ -85,6 +85,11 @@ public class MainMenu extends JFrame {
             repaint();
         });
 
+        binarySearchTreeButton.addActionListener(e ->{
+            setContentPane(new BinarySearchTreeUI(this, contentPane, selectedData));
+            revalidate();
+            repaint();
+        });
     }
 
 }
