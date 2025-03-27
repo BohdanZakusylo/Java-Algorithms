@@ -20,6 +20,7 @@ public class QueuePanel extends JPanel
     private JButton selectionSortButton;
     private JButton backButton;
     private JTextArea output;
+    private JLabel slowLabel;
 
     public QueuePanel(JFrame parentFrame, JPanel mainMenuPanel, SelectedData<?> selectedData)
     {  // Pass original contentPane
@@ -50,8 +51,9 @@ public class QueuePanel extends JPanel
                 mergeSort(queue);
             });
 
-            output.append("Sorted using mergesort in: " + time + " milliseconds");
+            output.append(queue.printToArray() + "\n");
             output.append("\n");
+            output.append("Sorted using mergesort in: " + time + " seconds");
             System.out.println(queue.printToArray());
         });
 
@@ -70,7 +72,9 @@ public class QueuePanel extends JPanel
                 selectionSort(queue);
             });
 
-            output.append("Sorted using SelectionSort in: " + time + " milliseconds");
+            output.append(queue.printToArray() + "\n");
+            output.append("\n");
+            output.append("Sorted using SelectionSort in: " + time + " seconds");
         });
 
 

@@ -170,7 +170,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
         });
         List<E> lst = lstHolder[0];
 
-        this.outputArea.setText("Result: " + lst + " Time taken: " + time);
+        this.outputArea.setText("Result: " + lst + "\nTime taken: " + time + " seconds");
     }
 
     private void binarySearch(E element)
@@ -181,7 +181,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
             this.mbt.binarySearch(element);
         });
 
-        this.outputArea.setText("Result: " + (!isContain ? " Does not contain " : " Contains ") + element + " Time taken: " + time);
+        this.outputArea.setText("Result: " + (!isContain ? " Does not contain " : " Contains ") + element + "\nTime taken: " + time + " seconds");
     }
 
     private void jumpSearch(E element)
@@ -192,6 +192,6 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
             this.mbt.jumpSearch(element);
         });
 
-        this.outputArea.setText("Result: " + (!isContain ? " Does not contain " : " Contains ") + element + " Time taken: " + time);
+        this.outputArea.setText("Result: " + (!isContain ? " Does not contain " : " Contains ") + element + "\nTime taken: " + time + " seconds");
     }
 }
