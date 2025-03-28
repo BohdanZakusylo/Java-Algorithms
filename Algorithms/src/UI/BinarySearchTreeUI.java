@@ -29,6 +29,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
         List<?> selectedDataLst = selectedData.getDataPoints();
         //BST Creation
         this.mbt = this.createMBT(selectedDataLst);
+        this.textArea.setText("Enter search term: ");
         this.outputArea.setText(this.shownText);
 
         //ActionListeners
@@ -194,4 +195,5 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
 
         this.outputArea.setText("Result: " + (!isContain ? " Does not contain " : " Contains ") + element + "\nTime taken: " + time + " seconds");
     }
+
 }

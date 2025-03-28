@@ -17,6 +17,7 @@
         <properties>
           <lineWrap value="true"/>
           <text value=""/>
+          <toolTipText value="Enter search term: "/>
           <wrapStyleWord value="true"/>
         </properties>
       </component>
