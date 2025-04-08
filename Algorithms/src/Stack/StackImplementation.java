@@ -19,6 +19,7 @@ public class StackImplementation<E extends Comparable<E>>
 
     public StackImplementation(Collection<?> c)
     {
+        // For converting an existing collection automatically to the stack
         this.size = 0;
         this.stack = new Object[c.size()];
         addAll(c);
@@ -82,24 +83,6 @@ public class StackImplementation<E extends Comparable<E>>
         return (E) this.stack[this.size];
     }
 
-    public void printLn()
-    {
-        for (Object e : this.stack)
-        {
-            System.out.println(e);
-        }
-    }
-
-    public void reverse()
-    {
-        for (int i = 0; i < this.size / 2; i++)
-        {
-            Object element = this.stack[i];
-            this.stack[i] = this.stack[this.size - 1 - i];
-            this.stack[this.size - 1 - i] = element;
-        }
-    }
-
     public String print()
     {
         return Arrays.toString(this.stack);
@@ -107,6 +90,8 @@ public class StackImplementation<E extends Comparable<E>>
 
     public int search(E searchElement)
     {
+        // Method is unused but required for the Java Stack implementation
+        // This is not the Java Stack but the method is included for completeness
         for (int pos = this.size; pos > 0; pos--)
         {
             Object element = this.stack[pos];
