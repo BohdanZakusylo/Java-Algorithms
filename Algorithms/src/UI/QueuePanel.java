@@ -60,14 +60,11 @@ public class QueuePanel extends JPanel
         selectionSortButton.addActionListener(e -> {
             output.setText(null);
 
-            // Get the list of data points
             ArrayList<?> array = new ArrayList<>(selectedData.getDataPoints());
 
-            // Create a queue with a proper generic type
             QueueImplementation<?> queue = new QueueImplementation<>();
             queue.addAll(array);
 
-            // Measure sorting time
             double time = timeMe(() -> {
                 selectionSort(queue);
             });
