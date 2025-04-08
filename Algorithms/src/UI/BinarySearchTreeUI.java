@@ -30,7 +30,6 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
 
         //BST Creation
         this.mbt = this.createMBT(selectedDataLst);
-        this.textArea.setText("Enter search term: ");
         this.outputArea.setText(this.shownText);
 
         //ActionListeners
