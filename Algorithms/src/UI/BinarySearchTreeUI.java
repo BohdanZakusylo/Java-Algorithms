@@ -27,6 +27,7 @@ public class BinarySearchTreeUI<E extends Comparable<E>> extends JPanel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(bstPanel);
         List<?> selectedDataLst = selectedData.getDataPoints();
+
         //BST Creation
         this.mbt = this.createMBT(selectedDataLst);
         this.textArea.setText("Enter search term: ");

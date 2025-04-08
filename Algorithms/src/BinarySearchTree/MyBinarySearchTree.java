@@ -39,6 +39,7 @@ public class MyBinarySearchTree<E extends Comparable<E>>
         Node<E> node = this.binarySearch(this.root, oldElement);
         if(node != null)
         {
+            //I can not do directly node.element = newElement because then it will not be a BST
             this.remove(oldElement);
             this.addValue(newElement);
         }
@@ -57,6 +58,7 @@ public class MyBinarySearchTree<E extends Comparable<E>>
         return lst;
     }
 
+    //used in the jump search
     private void toList(Node<E> node, List<E> lst)
     {
         if(node == null){
@@ -161,6 +163,7 @@ public class MyBinarySearchTree<E extends Comparable<E>>
     }
 
     //my own, recursive implementation of the Jump Search Algorithm
+    //did in order to understand the algorithm better and improve the recursive knowledge
     private boolean jumpSearch(E element, List<E> lst, int size, int jumpStep, int currentIndex, int prev)
     {
         if (currentIndex >= size) {
