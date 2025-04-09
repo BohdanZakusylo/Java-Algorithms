@@ -7,6 +7,9 @@ creation of different datastructures and algorithms in a generic
 
 If running the code on MacOS does not work (we have experienced visual bugs), please try it on a Windows laptop
 
+We've added a file named dataset.csv to the root of the project for testing purposes. It's a small sample, so it should run quickly, but you're welcome to use any CSV dataset of your choice to test with larger data as well.
+
+Have fun!
 
 ###  Binary Search Tree
 
