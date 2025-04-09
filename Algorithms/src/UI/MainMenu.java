@@ -39,6 +39,8 @@ public class MainMenu extends JFrame {
                 parser.setImportedFile(selectedFile);
                 parser.parseToHashMap();
 
+                dropDownValue.removeAllItems();
+
                 for (String key : parser.getParsedContent().keySet())
                 {
                     dropDownValue.addItem(key);
